@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Sign In{% endblock %}
+{% block body %}
+  <h1>OWNER PAGE</h1>
+  <h3>All Events</h3>
+  <div class="events">
+    {% if events %}
+    {%for event in events%}
+      <div class="event">
+          <span>Name: {{ event.name }} | </span> <span>Date: {{ event.date }} | </span> <span>Staff Assigned: {{ staff_filter(event.users) }}</span> <a href="{{ url_for('delete', eventid=event.event_id) }}">delete</a>
+      </div>
+    {% endfor %}
+    {% else %}
+      <span>No events scheduled</span>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | Catering</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+    <h1>Catering</h1>
+    <div class="navigation">
+    {% if g.user.username == 'owner' %}
+        <a href="{{ url_for('new_staff') }}">new staff</a>
+        <a href="{{ url_for('logout') }}">logout [{{ g.user.username }}]</a>
+    {% elif g.user.isStaff == True %}
+        <a href="{{ url_for('staff_page') }}">Staff Page</a>
+        <a href="{{ url_for('logout') }}">logout [{{ g.user.username }}]</a>
+    {% elif g.user.isStaff == False %}
+        <a href="{{ url_for('user')}}">Customer Page</a>
+        <a href="{{ url_for('request_event') }}">Request Event</a>
+        <a href="{{ url_for('logout') }}">logout [{{ g.user.username }}]</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Log In</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+    </div>
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <ul class="flashes">
+        {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <div class="body">
+  {% block body %}{% endblock %}
+  </div>
+  <div class="footer">
+    Julian's Catering &mdash; A Flask Application
+  </div>
+</div>

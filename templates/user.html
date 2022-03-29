@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Sign In{% endblock %}
+{% block body %}
+  <h1>HOME</h1>
+  <h3>Your Events</h3>
+  {% if events %}
+  <div class="events">
+  {%for event in events%}
+    <div class="event">
+        <span>Name: {{ event.name }} | </span> <span>Date: {{ event.date }}</span> <a href="{{ url_for('delete', eventid=event.event_id) }}">delete</a>
+    </div>
+  {% endfor %}
+  {% else %}
+    <span>You did not schedule any events yet.</span>
+  {% endif %}
+  </div>
+{% endblock %}

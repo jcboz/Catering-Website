@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Request Event{% endblock %}
+{% block body %}
+  <h2>Request Event</h2>
+  {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+  <form action="" method="post">
+    <dl>
+      <dt>Event Name:
+      <dd><input type="text" name="name" size="30" value="{{ request.form.name }}">
+      <dt>Event Date:
+      <dd><input type="date" name="date" size="30" value="{{ request.form.date }}">
+    </dl>
+    <div class="actions"><input type="submit" value="Request Event"></div>
+  </form>
+{% endblock %}
