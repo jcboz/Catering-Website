@@ -11,7 +11,6 @@ from sqlalchemy import not_
 
 from models import db, User, Event
 
-# create our little application :)
 app = Flask(__name__)
 
 # configuration
